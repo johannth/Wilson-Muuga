@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-us" xml:lang="en-us">
+    <head>    
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
+
+        <title>{% block title %}Wilson Muuga{% endblock %}</title> 
+        <meta name="description" content="{% block description %}Hljómsveitin Wilson Muuga semur hljóðrásina fyrir yfirvofandi heimsenda.{% endblock %}" />
+        <meta name="keywords" content="Wilson Muuga, Music, Tónlist, Icelandic, Ísland, Apocalypse, Heimsendir, Rock, Electronic"/>
+
+        {% block css %}
+        {% endblock %}
+        
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+        {% block js %}
+        
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+        {% include 'google_analytics.html' %}
+    </body>
+</html>

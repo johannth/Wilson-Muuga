@@ -1,0 +1,8 @@
+static/admin
+djangoappengine
+dbindexer
+djangotoolbox
+django
+.google_appengine
+*.pyc
+*~

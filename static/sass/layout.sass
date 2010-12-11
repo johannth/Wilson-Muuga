@@ -1,0 +1,201 @@
+!background_color =  #fa9e05
+
+html
+    background:
+        color = !background_color
+        repeat: repeat-x
+    
+    font-family: "Lucida Grande",Helvetica,Arial,'sans-serif'
+
+#wrapper
+    width: 963px
+    margin:
+        left: auto
+        right: auto
+        
+.frame
+    a
+        color = !background_color
+
+    margin:
+        bottom: 20px
+        top: 20px
+    background-color: #fff
+    border: 3px solid #000
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    padding: 25px
+    overflow: hidden
+    
+    h2
+        font-size: 2.0em
+        
+        margin:
+            bottom: 20px
+            
+    p
+        margin-bottom: 10px
+        
+    pre 
+        margin:
+            top: 20px
+            bottom: 20px
+        color = !background_color
+        
+    dl
+        dt
+            font-weight: bold
+            margin-bottom: 5px
+        dd
+            margin:
+                left: 20px
+                bottom: 10px
+                
+
+        
+    .last
+        margin-right: 0px!important
+        
+    .quote
+        float: left
+        width: 440px
+        margin-right: 27px
+        
+        blockquote
+            margin-bottom: 10px
+            font-size: 1.1em
+            line-height: 1.5em
+    
+    
+    
+        .author
+            text-align: right
+            
+        
+
+#page
+    h1.header
+        font-size: 2.5em
+        text-indent: -999999px
+        margin-bottom: 35px
+        height: 150px
+        background:
+            image: url(../images/wheninreykjavik/banner.jpg)
+            repeat: no-repeat
+            
+        a
+            display: block
+            width: 906px
+            height: 150px
+        
+
+        
+    h3
+        font-size: 1.5em
+        margin-bottom: 10px
+        
+    p.summary
+        font-size: 1.5em
+        line-height: 1.3em
+        margin-bottom: 20px
+        
+    p.last 
+        margin-bottom: 0px
+    
+#navigation
+    overflow: hidden
+    margin-bottom: 10px
+    
+    li
+        float: left
+        margin-right: 20px
+        
+ul.carousel
+    overflow: hidden
+    
+    li
+        !width_of_each_trip = 301px
+        !padding = 20px
+        !width_of_panel = (903px - 2 * !padding )/ 3
+        width =  !width_of_panel
+        padding-right = !padding
+        float: left
+        
+        h3
+            a
+                text-decoration: none
+                color = !background_color
+        
+        p.tagline
+            font-size: 1.1em
+            margin-bottom: 10px
+            
+        a
+            text-decoration: none
+            color: #000
+            
+            &:hover
+                text-decoration: underline
+        
+        img 
+            width = !width_of_panel
+            height: 320px
+            margin-bottom: 5px
+    
+.tour-detail
+    .tour
+        overflow: hidden
+        
+        .tour-info
+            width: 450px
+            float: left
+            overflow: hidden
+            
+            ul
+                li
+                    font-size: 1.5em
+                    margin-bottom: 10px
+                    
+                    span
+                        color = !background_color
+                        margin-right: 10px
+
+            
+            img
+                width: 450px
+                margin-bottom: 15px
+            
+        .tour-details
+            margin-left: 20px
+            float: left
+            !width = 903px - 450px - 20px
+            width = !width
+            .tour-text
+
+                
+                h2
+                    color = !background_color
+                    margin-bottom: 10px
+                    
+                div
+                    line-height: 1.5em
+                    
+            .book-now
+                background-color = !background_color
+                color: #fff
+                text-align: center
+                display: block
+                font-size: 2em
+                width = !width - 2 * 25px
+                margin:
+                    top: 20px
+                    left: auto
+                    right: auto
+                    
+
+
+            
+
+            
+
+                

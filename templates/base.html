@@ -4,9 +4,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8;" />
 
         <title>{% block title %}Wilson Muuga{% endblock %}</title> 
-        <meta name="description" content="{% block description %}Hljómsveitin Wilson Muuga semur hljóðrásina fyrir yfirvofandi heimsenda.{% endblock %}" />
-        <meta name="keywords" content="Wilson Muuga, Music, Tónlist, Icelandic, Ísland, Apocalypse, Heimsendir, Rock, Electronic"/>
+        <meta name="description" content="{% block description %}Wilson Muuga writes the soundtrack to the apocalypse.{% endblock %}" />
+        <meta name="keywords" content="Wilson Muuga, Music, Tónlist, Icelandic, Ísland, Apocalypse, Heimsendir, Rock, Electronic, Alternative"/>
 
+        <link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" media="screen, projection" />
         {% block css %}
         {% endblock %}
         
@@ -17,6 +18,8 @@
     </head>
     <body>
         {% block body %}
+
+        
         {% endblock %}
         {% include 'google_analytics.html' %}
     </body>

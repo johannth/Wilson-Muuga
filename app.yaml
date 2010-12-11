@@ -15,12 +15,12 @@ handlers:
   static_files: static/robots.txt
   upload: static/robots.txt
   
-- url: /media
-  static_dir: static
-  
 - url: /media/admin
   static_dir: django/contrib/admin/media
   expiration: '0'
+  
+- url: /media
+  static_dir: static
 
 - url: /.*
   script: djangoappengine/main/main.py

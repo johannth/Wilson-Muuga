@@ -21,67 +21,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: level_editor_background2path
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_backgroundgradient
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_cardtype
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_color
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_image
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_level
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_level2level
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_levelbackground
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_levelgraph
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_levelpath
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_movementtype
-  properties:
-  - name: __key__
-    direction: desc
-
-- kind: level_editor_path2point
-  properties:
-  - name: path_id
-  - name: index
-
-- kind: level_editor_pointinpath
+- kind: christmas_christmasgif
   properties:
   - name: __key__
     direction: desc

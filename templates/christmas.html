@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+
+{% block title %}Jólaskórinn {{ gif.date.year }} - {{ block.super }}{% endblock %}
+
+{% block css %}
+<style type="text/css">
+    html { 
+        background-color: red; 
+        color: #fff;
+        font-family: cursive, sans-serif;
+    }
+    
+    #wrapper
+    { 
+        width: 600px;
+        margin-top: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #006600;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    
+    h1
+    {
+        font-size: 3em;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    
+    img
+    {
+        width: 600px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    p
+    {
+        text-align: center;
+        font-size: 1.5em;
+        margin-bottom: 15px;
+        line-height: 1.5em;
+    }
+    
+    p.merry-christmas
+    {
+        text-transform: uppercase;
+        font-size: 2.5em;
+    }
+    
+    a
+    {
+        color: #FFFF00;
+    }
+    
+    .hidden
+    {
+        display: none;
+    }
+    
+    #shoe
+    {
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function()
+{
+    
+    $("#shoe").click(function()
+    {
+        $("#closed-shoe").addClass("hidden");
+        $("#open-shoe").removeClass("hidden");
+    });
+});
+</script>
+
+{% endblock %}
+
+{% block body %}
+<div id="wrapper">
+    <h1>{{ gif.date.day }}. desember {{ gif.date.year }}!</h1>
+    <div id="closed-shoe"">
+        <img id="shoe" src="{{ MEDIA_URL }}images/christmas/air-jordan.png" />
+    </div>
+    <div id="open-shoe" class="hidden">
+    <p>
+        Í tilefni þess að {{ santa_claus_name }} er kominn til byggða langar <a href="http://www.wilsonmuuga.com">Wilson Muuga</a> að færa þér þessa mynd!
+    </p>
+    <img src="{{ gif.url_to_gif }}" />
+    <p class="merry-christmas">
+        Gleðileg jól!
+    </p>
+    <p>
+        Ekki gleyma að kíkja aftur í skóinn á morgun!
+    </p>
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fexample.com%2Fpage%2Fto%2Flike&amp;layout=standard&amp;show_faces=true&amp;width=600&amp;action=like&amp;colorscheme=dark&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:80px;" allowTransparency="true"></iframe>
+    </div>
+</div>
+{% endblock %}

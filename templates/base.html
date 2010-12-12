@@ -6,6 +6,8 @@
         <title>{% block title %}Wilson Muuga{% endblock %}</title> 
         <meta name="description" content="{% block description %}Wilson Muuga writes the soundtrack to the apocalypse.{% endblock %}" />
         <meta name="keywords" content="Wilson Muuga, Music, Tónlist, Icelandic, Ísland, Apocalypse, Heimsendir, Rock, Electronic, Alternative"/>
+        {% block opengraph %}
+        {% endblock %}
 
         <link rel="stylesheet" href="{{ MEDIA_URL }}css/reset.css" type="text/css" media="screen, projection" />
         {% block css %}

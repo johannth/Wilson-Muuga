@@ -24,6 +24,6 @@ urlpatterns = patterns('',
     (r'^$', 'django.views.generic.simple.direct_to_template', {'template': 'index.html'}),
     (r'big-dawg$', 'django.views.generic.simple.direct_to_template', {'template': 'bigdawg.html'}),
 
-    # Uncomment this for admin:
     (r'^admin/', include(admin.site.urls)),
+    (r'^jolin/', include("christmas.urls")),
 )

@@ -11,7 +11,7 @@
     #wrapper
     { 
         width: 400px;
-        margin-top: 150px;
+        margin-top: 100px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -59,14 +59,17 @@
     
     #footer
     {
-        margin-bottom: 20px;
+        margin-bottom: 50px;
+        overflow: hidden;
     }
     
     a
     {
         color: #fff;
         text-decoration: none;
-        margin-right: 16px;
+        font-size: 1em;
+        display: block;
+        float: left;
     }
     
     a.last
@@ -81,7 +84,6 @@
     
     .tracklist
     {
-        margin-top: 10px;
         margin-bottom: 10px;
         border-top: 1px solid #fff;
         border-bottom: 1px solid #fff;
@@ -91,6 +93,7 @@
     
     .tracklist li
     {
+        height: 100px;
         margin-bottom: 5px;
     }
     
@@ -98,7 +101,33 @@
     {
         display: none;
     }
+    
+    #facebook-like
+    {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #fff;
+    }
 </style>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(function()
+{
+    var widthOfLinks = 0;
+    $("#footer a").each(function(i, Element)
+    {
+        widthOfLinks += $(Element).width();
+    });
+    
+    $("#footer a").css("margin-right", "" + (($("#footer").width() - widthOfLinks) / ($("#footer a").size() - 1)) + "px");
+    $("#footer a.last").css("margin-right", 0);
+});
+</script>
+{% endblock %}
+
+{% block opengraph %}
+
 {% endblock %}
 
 {% block body %}
@@ -106,17 +135,25 @@
 <h1>Ekkert mótefni <span class="by">eftir</span><span>Wilson Muuga</span></h1>
 <p>Ástarsaga um heimsenda</p>
 
-
 <ol class="tracklist">
     <li>
         <span class="track-title">T mínus 2 mínútur og 22 sekúndur</span>
         
-        <object data="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100"><param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//"><param name="quality" value="high"><param name="allowNetworking" value="always"><param name="wmode" value="transparent"><param name="bgcolor" value="#000000"><param name="allowScriptAccess" value="never"><object data="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" width="400" height="100"></object></object>
+        <object data="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100">
+            <param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//" />
+            <param name="quality" value="high" />
+            <param name="allowNetworking" value="always"/>
+            <param name="wmode" value="transparent"/>
+            <param name="bgcolor" value="#000000"/>
+            <param name="allowScriptAccess" value="never"/>
+            <object data="http://bandcamp.com/EmbeddedPlayer/track=2444006932/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" width="400" height="100"></object>
+        </object>
 
     </li>
     <li>
         <span class="track-title">Handan tunglsins</span>
-        <object data="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100"><param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//"><param name="quality" value="high"><param name="allowNetworking" value="always"><param name="wmode" value="transparent"><param name="bgcolor" value="#000000"><param name="allowScriptAccess" value="never"><object data="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//" type="text/html" width="400" height="100"></object></object> 
+        <object data="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100">
+            <param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//"><param name="quality" value="high"><param name="allowNetworking" value="always"><param name="wmode" value="transparent"><param name="bgcolor" value="#000000"><param name="allowScriptAccess" value="never"><object data="http://bandcamp.com/EmbeddedPlayer/track=2433595871/size=venti/bgcol=000000/linkcol=ffffff//" type="text/html" width="400" height="100"></object></object> 
     </li>
     <li>
         <span class="track-title">Í þyngdarleysi</span>
@@ -127,7 +164,7 @@
         <object data="http://bandcamp.com/EmbeddedPlayer/track=1115684003/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100"><param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=1115684003/size=venti/bgcol=000000/linkcol=FFFFFF//"><param name="quality" value="high"><param name="allowNetworking" value="always"><param name="wmode" value="transparent"><param name="bgcolor" value="#000000"><param name="allowScriptAccess" value="never"><object data="http://bandcamp.com/EmbeddedPlayer/track=1115684003/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" width="400" height="100"></object></object>
     </li>
     <li>
-        <span class="track-title">Flóttinn í björgunarbátinn<span>
+        <span class="track-title">Flóttinn í björgunarbátinn</span>
         <object data="http://bandcamp.com/EmbeddedPlayer/track=238776444/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="400" height="100"><param name="movie" value="http://bandcamp.com/EmbeddedPlayer/track=238776444/size=venti/bgcol=000000/linkcol=FFFFFF//"><param name="quality" value="high"><param name="allowNetworking" value="always"><param name="wmode" value="transparent"><param name="bgcolor" value="#000000"><param name="allowScriptAccess" value="never"><object data="http://bandcamp.com/EmbeddedPlayer/track=238776444/size=venti/bgcol=000000/linkcol=FFFFFF//" type="text/html" width="400" height="100"></object></object>
     </li>
     <li>
@@ -142,6 +179,11 @@
     <li class="unreleased">Frá föður til sonar</li>
     <li class="unreleased">Niðurlag</li>-->
 </ol>
+
+<div id="facebook-like">
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FWilson-Muuga%2F496562675430&amp;layout=standard&amp;show_faces=false&amp;width=400&amp;action=like&amp;colorscheme=dark&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:35px;" allowTransparency="true"></iframe>
+</div>
+
 <div id="footer">
 <a href="http://music.wilsonmuuga.com">Bandcamp</a>
 <a href="http://www.facebook.com/pages/Wilson-Muuga/496562675430">Facebook</a>

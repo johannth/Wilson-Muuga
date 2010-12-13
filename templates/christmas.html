@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
-{% block title %}Jólaskórinn {{ gif.date.year }} - {{ block.super }}{% endblock %}
+{% block title %}Jólaskórinn {{ today.year }} - {{ block.super }}{% endblock %}
+{% block description %}Wilson Muuga setur eitthvað gott í skóinn á hverjum degi!{% endblock %}
 
 {% block css %}
 <style type="text/css">
@@ -8,6 +9,7 @@
         background-color: red; 
         color: #fff;
         font-family: cursive, sans-serif;
+        position: relative;
     }
     
     #wrapper
@@ -63,6 +65,30 @@
     {
         cursor: pointer;
     }
+    
+    .snow-flake
+    {
+        position: absolute;
+        z-index: 100;
+    }
+    
+    .gift .video
+    {
+        width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .other-days
+    {
+        margin-bottom: 15px;
+    }
+    
+    .other-days h2
+    {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
 </style>
 {% endblock %}
 
@@ -82,23 +108,149 @@ $(function()
 {% endblock %}
 
 {% block body %}
+<script type="text/javascript"> 
+var settings = 
+{
+    numberOfSnowflakes: 80,
+    colors: new Array("#aaaacc","#ddddFF","#ccccDD"),
+    snowFonts: new Array("Arial Black","Arial Narrow","Times","Comic Sans MS"),
+    snowFlake: "*",
+    sinkSpeed: 0.6,
+    snowMaxSize: 22,
+    snowMinSize: 8
+};
+
+function randomInteger(range) {       
+    return Math.floor(range * Math.random());
+}
+
+var snowFlakes = new Array();
+
+var SnowFlake = function(initialXPosition, initialYPosition, xDelta, yDelta, timeDelta)
+{
+    this.initialXPosition = initialXPosition;
+    this.initialYPosition = initialYPosition
+    this.xDelta = xDelta;
+    this.yDelta = yDelta;
+    this.currentTime = 0;
+    this.timeDelta = timeDelta;
+    this.currentYPosition = initialYPosition;
+};
+
+SnowFlake.prototype.moveByYDelta = function()
+{
+    this.currentYPosition += this.yDelta;
+    return this.currentYPosition;
+};
+
+SnowFlake.prototype.passTime = function()
+{
+    this.currentTime += this.timeDelta;
+};
+
+SnowFlake.prototype.getCurrentXPosition = function()
+{
+    return this.initialXPosition + this.xDelta * Math.sin(this.currentTime);
+};
+
+function initSnow() {
+    
+    var snowSizeRange = settings.snowMaxSize - settings.snowMinSize;
+    
+    for (var i = 0; i != settings.numberOfSnowflakes; i++) {
+        var snowFlake = $("<span class='snow-flake'>" + settings.snowFlake +"</span>"),
+        initialYPosition = -settings.snowMaxSize,
+        initialXPosition = randomInteger($("html").width()),
+        size = settings.snowMinSize + randomInteger(snowSizeRange);
+    
+        var snowFlakeData = new SnowFlake(initialXPosition, 
+                                            initialYPosition,
+                                            Math.random() * 15, 
+                                            settings.sinkSpeed * size / 5.0 * (0.3 + Math.random()),
+                                            0.03 + Math.random() / 10);
+        snowFlakes[i] = snowFlakeData;
+        
+        snowFlake.css("top", initialYPosition);
+        snowFlake.css("left", initialXPosition);
+        snowFlake.css("font-size", size);
+        
+        snowFlake.css("font-family", settings.snowFonts[randomInteger(settings.snowFonts.length)]);
+        snowFlake.css("color", settings.colors[randomInteger(settings.colors.length)]);
+        $("body").prepend(snowFlake);
+    }
+
+    setInterval(snowTick, 50);
+}
+
+function removePxExtension(string)
+{
+    return parseInt(string.replace("px", ""), 10);
+}
+
+function snowTick() {
+    var windowHeight = $(window).height();
+    $(".snow-flake").each(function(i, Element)
+    {
+        var snowFlake = $(Element),
+        snowFlakeData = snowFlakes[i],
+        newYPosition = snowFlakeData.moveByYDelta();
+        
+        snowFlakeData.passTime();
+
+        snowFlake.css("top", newYPosition);
+        snowFlake.css("left", snowFlakeData.getCurrentXPosition());
+        
+        if(snowFlakeData.currentYPosition >= 0.7 * windowHeight)
+        {
+            var newXPosition = randomInteger($("html").width());
+            snowFlakeData.initialXPosition = newXPosition;
+            snowFlakeData.currentTime = 0;
+            snowFlakeData.currentYPosition = 0;
+            snowFlake.css("left", newXPosition);
+            snowFlake.css("top", 0);
+        }
+    });
+}
+
+$(function()
+{
+    initSnow();
+});
+</script> 
 <div id="wrapper">
-    <h1>{{ gif.date.day }}. desember {{ gif.date.year }}!</h1>
+    <h1>{{ today.day }}. desember {{ today.year }}!</h1>
     <div id="closed-shoe"">
         <img id="shoe" src="{{ MEDIA_URL }}images/christmas/air-jordan.png" />
     </div>
     <div id="open-shoe" class="hidden">
+    {% if gift %}
     <p>
-        Í tilefni þess að {{ santa_claus_name }} er kominn til byggða langar <a href="http://www.wilsonmuuga.com">Wilson Muuga</a> að færa þér þessa mynd!
+        Í tilefni þess að {{ santa_claus_name }} er kominn til byggða langar <a href="http://www.wilsonmuuga.com">Wilson Muuga</a> að færa þér {{ gift.gift_text }}
     </p>
-    <img src="{{ gif.url_to_gif }}" />
+    <div class="gift">
+    {{ gift.as_html|safe }}
+    </div>
+    {% else %}
+    <p>
+        Ha ha! Tómur skór! Jólasveinnin hefur gleymt að setja eitthvað í skóinn í dag!
+    </p>
+    {% endif %}
     <p class="merry-christmas">
         Gleðileg jól!
     </p>
     <p>
         Ekki gleyma að kíkja aftur í skóinn á morgun!
     </p>
-    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fexample.com%2Fpage%2Fto%2Flike&amp;layout=standard&amp;show_faces=true&amp;width=600&amp;action=like&amp;colorscheme=dark&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:600px; height:80px;" allowTransparency="true"></iframe>
+    <div class="other-days">
+    <h2>Hvað fékkstu í skóinn á öðrum degi?</h2>
+    {% for day in previous_days %}
+    {% ifnotequal day today %}
+    <a href="{% url gott-i-skoinn-date year=day.year,month=day.month,day=day.day %}">{{ day.day }}. desember {{ day.year }}</a>
+    {% endifnotequal %}
+    {% endfor %}
     </div>
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.wilsonmuuga.com%2Fjolin%2Fgott-i-skoinn%2F&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;colorscheme=dark&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:80px;" allowTransparency="true"></iframe>
+    </div>
+
 </div>
 {% endblock %}

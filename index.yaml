@@ -25,3 +25,8 @@ indexes:
   properties:
   - name: __key__
     direction: desc
+
+- kind: christmas_christmasvideo
+  properties:
+  - name: __key__
+    direction: desc

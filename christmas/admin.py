@@ -2,9 +2,13 @@
 
 from django.contrib import admin
 
-from christmas.models import ChristmasGIF
+from christmas.models import ChristmasGIF, ChristmasVideo
 
 class ChristmasGIFAdmin(admin.ModelAdmin):
     display_list = ("date", "as_html")
 
+class ChristmasVideoAdmin(admin.ModelAdmin):
+    display_list = ("date", "title")
+
 admin.site.register(ChristmasGIF, ChristmasGIFAdmin)
+admin.site.register(ChristmasVideo, ChristmasVideoAdmin)

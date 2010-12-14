@@ -90,17 +90,35 @@
         margin-bottom: 10px;
     }
 </style>
+
+{% block custom_css %}
+{% endblock %}
 {% endblock %}
 
 {% block js %}
+<script type="text/javascript" src="{{ MEDIA_URL }}js/cookies.js"></script>
 <script type="text/javascript">
+
+function createShoeCookieName()
+{
+    return "shoeHasBeenOpenedOn{{ today.year }}-{{ today.month }}-{{ today.day }}";
+}
+
 $(function()
 {
+    var today = new Date();
+    
+    if(cookies.readCookie(createShoeCookieName(today)) !== null)
+    {
+        $("#closed-shoe").addClass("hidden");
+        $("#open-shoe").removeClass("hidden");
+    }
     
     $("#shoe").click(function()
     {
         $("#closed-shoe").addClass("hidden");
         $("#open-shoe").removeClass("hidden");
+        cookies.createCookie(createShoeCookieName(today), true); 
     });
 });
 </script>
@@ -189,6 +207,7 @@ function removePxExtension(string)
 
 function snowTick() {
     var windowHeight = $(window).height();
+    var windowWidth = $(window).width()
     $(".snow-flake").each(function(i, Element)
     {
         var snowFlake = $(Element),
@@ -196,13 +215,15 @@ function snowTick() {
         newYPosition = snowFlakeData.moveByYDelta();
         
         snowFlakeData.passTime();
+        
+        var currentXPosition = snowFlakeData.getCurrentXPosition();
 
         snowFlake.css("top", newYPosition);
-        snowFlake.css("left", snowFlakeData.getCurrentXPosition());
+        snowFlake.css("left", currentXPosition);
         
-        if(snowFlakeData.currentYPosition >= 0.7 * windowHeight)
+        if(snowFlakeData.currentYPosition >= 0.7 * windowHeight || currentXPosition < 0 || currentXPosition > (windowWidth - 5))
         {
-            var newXPosition = randomInteger($("html").width());
+            var newXPosition = randomInteger(windowWidth);
             snowFlakeData.initialXPosition = newXPosition;
             snowFlakeData.currentTime = 0;
             snowFlakeData.currentYPosition = 0;
@@ -228,7 +249,7 @@ $(function()
         Í tilefni þess að {{ santa_claus_name }} er kominn til byggða langar <a href="http://www.wilsonmuuga.com">Wilson Muuga</a> að færa þér {{ gift.gift_text }}
     </p>
     <div class="gift">
-    {{ gift.as_html|safe }}
+    {% block gift %}{% endblock %}
     </div>
     {% else %}
     <p>

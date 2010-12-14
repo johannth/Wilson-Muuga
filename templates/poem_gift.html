@@ -1,0 +1,135 @@
+{% extends 'christmas.html' %}
+
+{% block custom_css %}
+<style type="text/css">
+    .poems
+    {
+        width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #fff;
+        margin-bottom: 20px;
+    }
+    
+    .poems h3
+    {
+        font-size: 2em;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    
+    .poems p
+    {
+        text-align: left;
+    }
+    
+    .poems .poem-line-input
+    {
+        width: 400px;
+    }
+    
+    .poems .poem-author-input
+    {
+        width: 200px;
+    }
+    
+    .poems label
+    {
+        display: block;
+    }
+    
+    .poems .author
+    {
+        font-style: italic;
+        text-align: right;
+    }
+    
+    .poems .poem
+    {
+        margin-bottom: 20px;
+    }
+    
+    .poems .br
+    {
+        overflow: hidden;
+    }
+    
+    .poems .br img
+    {
+        width: 40px;
+        display: block;
+        float:left
+    }
+</style>
+{% endblock %}
+
+{% block gift %}
+<div class="poems">
+<p class="first_half">
+{{ poem.first_half.first_line }}</br>
+{{ poem.first_half.second_line }}
+</p>
+
+<script type="text/javascript">
+$(function()
+{
+    $("#send-second-half input").keyup(function(event) {
+        if (event.keyCode === 13) {
+            //event.preventDefault();
+            return false;
+        }
+    });
+    
+    $("#send-second-half").submit(function() {
+        return $("input[name=first_line]").val() !== "" &&
+                $("input[name=second_line]").val() !== "" &&
+                $("input[name=author]").val() !== "";
+    });
+    
+});
+</script>
+<form id="send-second-half" method="POST" action="{% url save-second-half %}">
+{% csrf_token %}
+<p><input class="poem-line-input" name="first_line" type="text" /></p>
+<p><input class="poem-line-input" name="second_line" type="text" /></p>
+<p>
+    <label for="author">Höfundur:</label>
+    <input class="poem-author-input" name="author" type="text" /></p>
+<p>
+    <input type="hidden" name="poemID" value="{{ poem.id }}" />
+    <input type="submit" value="Senda inn seinni part!" /></p>
+</form>
+
+{% if poems %}
+
+<h3>Innsend ljóð!</h3>
+
+{% for sent_poem in poems %}
+<div class="poem">
+<p>
+{{ poem.first_half.first_line }}</br>
+{{ poem.first_half.second_line }}</br>
+{{ sent_poem.second_half.first_line }}</br>
+{{ sent_poem.second_half.second_line }}</br>
+</p>
+<p class="author">
+{{ sent_poem.second_half.author }}
+</p>
+<div class="br">
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif" width="10" />
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10"/>
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"   width="10"/>
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10" />
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10" />
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif" width="10" />
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10"/>
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"   width="10"/>
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10" />
+<img src="http://webdeveloper.com/animations/holiday/christmas/gifs/star_2.gif"  width="10" />
+</div>
+</div>
+{% endfor %}
+{% endif %}
+</div>
+{% endblock %}

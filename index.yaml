@@ -26,6 +26,22 @@ indexes:
   - name: __key__
     direction: desc
 
+- kind: christmas_christmaspoem
+  properties:
+  - name: __key__
+    direction: desc
+
+- kind: christmas_christmaspoem2secondhalf
+  properties:
+  - name: poem_id
+  - name: datetime_created
+    direction: desc
+
+- kind: christmas_christmaspoemhalf
+  properties:
+  - name: __key__
+    direction: desc
+
 - kind: christmas_christmasvideo
   properties:
   - name: __key__
